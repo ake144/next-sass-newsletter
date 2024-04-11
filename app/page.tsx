@@ -1,20 +1,28 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button"
-import  {Navbar} from '@/components/components/nav'
-import  {TextGenerate} from '@/components/components/text'
+import { Button } from "@/components/ui/button";
+import { Navbar } from '@/components/components/nav';
+import { TextGenerate } from '@/components/components/text';
 import Footer from "@/components/components/fotter";
-
+import ReviewsSection from '@/components/components/testimonial'
+import { Heroparallalx } from "@/components/components/parallel";
+import { Bentogrid } from "@/components/components/feature";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-between p-24">
-     <div className="flex flex-row items-center justify-center"> 
-     <Navbar />
-     </div>
-     <TextGenerate />  
-      
-      <Button>Click me</Button>
-    <div  className="w-full  "> <Footer /> </div> 
-    </main>
+    <div className="flex flex-col min-h-screen m-auto relative">
+      <div className="w-full  py-3 my-8 ">
+        <Navbar />
+      </div>
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <TextGenerate />
+        <Heroparallalx />
+        <Bentogrid/>
+        <Button  className="p-5 m-5">Read More</Button>
+       <ReviewsSection />
+      </div>
+      <div className="w-full">
+        <Footer />
+      </div>
+    </div>
   );
 }
