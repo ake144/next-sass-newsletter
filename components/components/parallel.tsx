@@ -6,7 +6,7 @@ import { LatestBlog,posts } from "@/utils/type";
 
 async function getPost() {
   try {
-    const response = await fetch("api/latest", { cache: "force-cache" });
+    const response = await fetch("api/latest",{cache: 'force-cache'} );
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }

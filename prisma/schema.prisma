@@ -36,6 +36,7 @@ model posts {
   title      String
   link       String
   thumbnail  String
+  content    String
   author     User   @relation(fields: [authorId], references: [id])
   authorId   Int
 }

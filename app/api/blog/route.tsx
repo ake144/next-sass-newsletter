@@ -8,7 +8,7 @@ import { LatestBlog,posts } from '@/utils/type';
 export  async function GET(req: NextRequest) {
   try {
     const data:LatestBlog[] = await prisma.latest.findMany();
-    console.log(data)
+
     return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('Error fetching resources:', error);

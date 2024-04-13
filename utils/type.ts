@@ -21,6 +21,7 @@ export type posts = {
   title:string;
   link:string;
   thumbnail:string;
+  content:string;
   authorId:number;
 }
 

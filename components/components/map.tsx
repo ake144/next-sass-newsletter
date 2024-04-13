@@ -395,7 +395,7 @@ export function GlobeMap() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
+    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-slate-950 bg-white relative w-full">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div
           initial={{

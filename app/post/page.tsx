@@ -1,11 +1,11 @@
  'use client'
  import React from 'react';
- import { IBlog } from '@/utils/type';
+ import { IBlog, LatestBlog } from '@/utils/type';
 import { Link } from 'lucide-react';
  
  async function getPost() {
    try {
-     const response = await fetch("api/post");
+     const response = await fetch("api/blog");
      if (!response.ok) {
        throw new Error('Failed to fetch posts');
      }
@@ -22,7 +22,7 @@ import { Link } from 'lucide-react';
  }
  
  export default function PostPage() {
-   const [posts, setPosts] = React.useState<IBlog[]>([]);
+   const [posts, setPosts] = React.useState<LatestBlog[]>([]);
  
    React.useEffect(() => {
      async function fetchPosts() {
@@ -41,7 +41,7 @@ import { Link } from 'lucide-react';
             <Link>
            <li key={post.id}>
              <h2>{post.title}</h2>
-             <p>{post.content}</p>
+             <p>{post.description}</p>
            </li>
            </Link>
          ))}
