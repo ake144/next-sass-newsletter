@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { posts } from '@/utils/type';
 import Link from "next/link";
 import Image from "next/image";
+import { SkeletonCard } from "@/components/components/skeleton";
+
 
 export default function PostPage() {
   const { id } = useParams();
-
+ const [Loading , setLoading ]  = useState(true)
   const [postData, setPostData] = useState<posts | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,12 +21,15 @@ export default function PostPage() {
 
         if (data.success) {
           setPostData(data.data.post);
+          setLoading(false)
         } else {
           setError(data.error);
+          setLoading(false)
         }
       } catch (error) {
         console.error('Error fetching post:', error);
         setError('Failed to fetch post');
+        setLoading(false)
       }
     };
 
@@ -33,6 +38,12 @@ export default function PostPage() {
 
   return (
     <>
+    {Loading && (
+      <SkeletonCard />
+    )}
+     <Link  href='/'  className="my-4 p-4 mx-4">
+      <Image src='/back.png' alt=" back" height={25} width={50} />
+     </Link>
     {postData && (
       <main key={postData.id} className="mt-10">
         <div className="mb-4 md:mb-0 w-1/2 mx-auto relative">
@@ -48,7 +59,7 @@ export default function PostPage() {
             </a>
           </div>
 
-          <Image src={postData.thumbnail} alt=" " className="w-full object-cover lg:rounded" height={448}  width={500} />
+          <Image src={postData.thumbnail} alt=" " className="w-full object-cover lg:rounded" height={300}  width={500} />
         </div>
 
         <div className="flex flex-col lg:flex-row lg:space-x-12">

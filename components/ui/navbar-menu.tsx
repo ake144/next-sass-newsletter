@@ -78,31 +78,37 @@ export const Menu = ({
 };
 
 export const ProductItem = ({
+
   title,
-  description,
-  href,
-  src,
+  content,
+  link,
+  thumbnail,
 }: {
+
   title: string;
-  description: string;
-  href: string;
-  src: string;
+  content: string;
+  link: string;
+  thumbnail: string;
 }) => {
   return (
-    <Link href={href} className="flex space-x-2">
-      <Image
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
-      />
+    <Link href={link} className="flex space-x-2 ">
+      <div className="flex-shrink-0 rounded-md shadow-2xl">
+        <Image
+          src={thumbnail}
+          width={100}
+          height={50}
+          alt={title}
+          priority={true} // Add priority property
+          className="rounded-md"
+          style={{ width: "auto", height: "auto" }}
+        />
+      </div>
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+        <h4 className="text-1xl font-bold mb-1 text-black dark:text-white">
           {title}
         </h4>
         <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
-          {description}
+          {content}
         </p>
       </div>
     </Link>
