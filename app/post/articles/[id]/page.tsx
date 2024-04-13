@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { posts } from '@/utils/type';
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -47,7 +48,7 @@ export default function PostPage() {
             </a>
           </div>
 
-          <img src={postData.thumbnail} className="w-full object-cover lg:rounded" style={{ height: "28em" }}/>
+          <Image src={postData.thumbnail} alt=" " className="w-full object-cover lg:rounded" height={448}  width={500} />
         </div>
 
         <div className="flex flex-col lg:flex-row lg:space-x-12">
@@ -60,7 +61,7 @@ export default function PostPage() {
             <div className="p-4 border-t border-b md:border md:rounded">
               <div className="flex py-2 w-1/3 h-20 ">
              
-                <img src="/profile.png" className="h-10 w-10 rounded-full mr-2 object-cover" />
+                <Image  src="/profile.png" alt=" " className="h-10 w-10 rounded-full mr-2 object-cover" width={10} height={10} />
                 <div>
                   <p className="font-semibold text-white light:text-black text-sm"> Akanji </p>
                   <p className="font-semibold text-white light:text-black text-xs"> Editor  </p>
