@@ -18,6 +18,8 @@ model User {
   email String  @unique
   name  String?
   posts Blog[]
+  articles  posts[]
+ latest    Latest[]
 }
 
 model Blog {
@@ -27,4 +29,23 @@ model Blog {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int    
+}
+
+model posts {
+  id         Int      @id @default(autoincrement())
+  title      String
+  link       String
+  thumbnail  String
+  author     User   @relation(fields: [authorId], references: [id])
+  authorId   Int
+}
+
+model Latest {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  link        String
+  image       String 
+  author      User   @relation(fields: [authorId], references: [id])
+  authorId    Int
 }

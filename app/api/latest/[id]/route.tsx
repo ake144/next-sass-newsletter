@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: { id: number } }
 ) {
   const id = params.id
-  const post = await prisma.blog.findUnique({
+  const post = await prisma.posts.findUnique({
     where: { id: Number(id) }
   });
 
@@ -35,7 +35,7 @@ export async function DELETE(
   try {
     const { id } = params;
     
-    const deletedPost = await prisma.blog.delete({
+    const deletedPost = await prisma.latest.delete({
       where: { id },
     });
 

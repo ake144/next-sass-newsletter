@@ -6,6 +6,7 @@ import Footer from "@/components/components/fotter";
 import ReviewsSection from '@/components/components/testimonial'
 import { Heroparallalx } from "@/components/components/parallel";
 import { Bentogrid } from "@/components/components/feature";
+import { GlobeMap } from "@/components/components/map";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Heroparallalx />
         <Bentogrid/>
         <Button  className="p-5 m-5">Read More</Button>
+      <GlobeMap />
        <ReviewsSection />
       </div>
       <div className="w-full">

@@ -102,6 +102,7 @@ export const HeroParallax = ({
 };
 
 export const Header = () => {
+  
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
       <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
@@ -126,6 +127,8 @@ export const ProductCard = ({
   };
   translate: MotionValue<number>;
 }) => {
+
+  console.log(product);
   return (
     <motion.div
       style={{
@@ -134,15 +137,15 @@ export const ProductCard = ({
       whileHover={{
         y: -20,
       }}
-      key={product.title}
+      key={product?.title}
       className="group/product h-96 w-[30rem] relative flex-shrink-0"
     >
       <Link
-        href={product.link}
+        href={product?.link}
         className="block group-hover/product:shadow-2xl "
       >
         <Image
-          src={product.thumbnail}
+          src={product?.thumbnail}
           height="600"
           width="600"
           className="object-cover object-left-top absolute h-full w-full inset-0"

@@ -6,6 +6,24 @@ export type IBlog = {
   authorId: number;
 };
 
+export type LatestBlog = {
+   id: number;
+  title: string;
+  description:string;
+  link: string;
+  image:string;
+  authorId: number;
+
+}
+
+export type posts = {
+  id:number;
+  title:string;
+  link:string;
+  thumbnail:string;
+  authorId:number;
+}
+
 // export type IBlogDetial = {
 // 	created_at: string;
 // 	id: string;
