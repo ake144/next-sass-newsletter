@@ -1,26 +1,26 @@
 
 import prisma  from "@/utils/db";
-// import { LatestBlog } from "@/utils/type";
-import { error } from "console";
 import { NextResponse,NextRequest } from "next/server";
 
 
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: number } }
+  { params }: { params: { slug: string } }
 ) {
-  const id = params.id;
-  const post = await prisma.latest.findUnique({
-    where: { id: Number(id) },
+  const  title = params.slug
+  console.log('the title is ' + title)
+  const post = await prisma.posts.findFirst({
+    where: { title }
   });
 
-  if (!post) {
-    return NextResponse.json({ success: false, error: "Post not found" });
+   if(!post) {
+    return NextResponse.json({success: false, error: 'Post not found'})
   }
+  
 
+return NextResponse.json({success: true, data: {post}})
 
-  return NextResponse.json({ success: true, data: { post } });
 }
 
 

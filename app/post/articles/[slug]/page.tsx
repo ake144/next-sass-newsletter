@@ -6,35 +6,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { SkeletonCard } from "@/components/components/skeleton";
 
+export default function PostPage({params: {slug}}:{params: {slug: string}}) {
+  const decodedSlug = decodeURIComponent(slug); // Decoding the slug
+  console.log('the decode slug is' + decodedSlug)
 
-export default function PostPage() {
-  const { id } = useParams();
- const [Loading , setLoading ]  = useState(true)
+  const [Loading, setLoading] = useState(true);
   const [postData, setPostData] = useState<posts | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/latest/${id}`, {cache: 'force-cache'});
+        const response = await fetch(`/api/latest/${decodedSlug}`);
         const data = await response.json();
 
         if (data.success) {
           setPostData(data.data.post);
-          setLoading(false)
+          setLoading(false);
         } else {
           setError(data.error);
-          setLoading(false)
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching post:', error);
         setError('Failed to fetch post');
-        setLoading(false)
+        setLoading(false);
       }
     };
 
     fetchPost();
-  }, [id]);
+  }, [decodedSlug]);
 
   return (
     <>
@@ -92,7 +93,6 @@ export default function PostPage() {
         </div>
       </main>
     )}
-    {error && <p>{error}</p>}
-    </>
-  );
+  </>
+  )
 }

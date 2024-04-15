@@ -7,8 +7,10 @@ import Link from "next/link";
 import { SkeletonCard } from "@/components/components/skeleton";
 
 
-export default function PostPage() {
-  const { id } = useParams();
+export default function PostPage({params:{slug}}:{params:{slug:string}}) {
+  const decodedSlug = decodeURIComponent(slug); // Decoding the slug
+  console.log("the value of slug is " + decodedSlug)
+
   const [Loading , setLoading] = useState(true)
 
   const [postData, setPostData] = useState<LatestBlog | null>(null);
@@ -17,9 +19,7 @@ export default function PostPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/blog/${id}`, {
-          cache: "force-cache",
-        });
+        const response = await fetch(`/api/blog/${decodedSlug}`);
         const data = await response.json();
 
         if (data.success) {
@@ -37,7 +37,7 @@ export default function PostPage() {
     };
 
     fetchPost();
-  }, [id]);
+  }, [decodedSlug]);
 
   return (
     <>

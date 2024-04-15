@@ -128,7 +128,6 @@ export const ProductCard = ({
   translate: MotionValue<number>;
 }) => {
 
-  console.log(product);
   return (
     <motion.div
       style={{
@@ -140,10 +139,9 @@ export const ProductCard = ({
       key={product?.title}
       className="group/product h-96 w-[30rem] relative flex-shrink-0"
     >
-      <Link
-        href={product?.link}
+      <Link  href={`post/articles/${product?.title}`} 
         className="block group-hover/product:shadow-2xl "
-      >
+    > 
         <Image
           src={product?.thumbnail}
           height="600"
