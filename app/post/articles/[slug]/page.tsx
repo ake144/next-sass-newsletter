@@ -1,15 +1,17 @@
 'use client'
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { posts } from '@/utils/type';
 import Link from "next/link";
 import Image from "next/image";
 import { SkeletonCard } from "@/components/components/skeleton";
+import NextShare from "@/components/components/nextshare";
 
 export default function PostPage({params: {slug}}:{params: {slug: string}}) {
   const [Loading, setLoading] = useState(true);
   const [postData, setPostData] = useState<posts | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const path = usePathname()
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -88,6 +90,7 @@ export default function PostPage({params: {slug}}:{params: {slug: string}}) {
             </div>
           </div>
         </div>
+        <div className="item-center justify-center m-4 gap-3 w-screen h-2  flex"> share  <NextShare  url={path} /></div>
       </main>
     )}
   </>
