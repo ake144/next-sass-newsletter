@@ -20,6 +20,7 @@
     "framer-motion": "^11.0.27",
     "lucide-react": "^0.367.0",
     "next": "14.1.4",
+    "next-share": "^0.27.0",
     "next-themes": "^0.3.0",
     "prisma": "^5.12.1",
     "react": "^18",

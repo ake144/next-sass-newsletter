@@ -13,6 +13,7 @@ export type LatestBlog = {
   link: string;
   image:string;
   authorId: number;
+  slug:string ;
 
 }
 
@@ -23,6 +24,7 @@ export type posts = {
   thumbnail:string;
   content:string;
   authorId:number;
+  slug:string ;
 }
 
 // export type IBlogDetial = {

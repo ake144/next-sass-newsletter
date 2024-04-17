@@ -1,16 +1,17 @@
 'use client'
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LatestBlog } from '@/utils/type';
 import Image from "next/image";
 import Link from "next/link";
 import { SkeletonCard } from "@/components/components/skeleton";
+import NextShare from "@/components/components/nextshare";
+
 
 
 export default function PostPage({params:{slug}}:{params:{slug:string}}) {
-  const decodedSlug = decodeURIComponent(slug); // Decoding the slug
-  console.log("the value of slug is " + decodedSlug)
-
+  const path = usePathname()
+  console.log("the path is " + path)
   const [Loading , setLoading] = useState(true)
 
   const [postData, setPostData] = useState<LatestBlog | null>(null);
@@ -19,7 +20,7 @@ export default function PostPage({params:{slug}}:{params:{slug:string}}) {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/blog/${decodedSlug}`);
+        const response = await fetch(`/api/blog/${slug}`);
         const data = await response.json();
 
         if (data.success) {
@@ -37,7 +38,7 @@ export default function PostPage({params:{slug}}:{params:{slug:string}}) {
     };
 
     fetchPost();
-  }, [decodedSlug]);
+  }, [slug]);
 
   return (
     <>
@@ -55,7 +56,7 @@ export default function PostPage({params:{slug}}:{params:{slug:string}}) {
                 {postData.title}
               </h2>
               <a
-                href="#"
+                href="/"
                 className="py-2 text-green-700 inline-flex items-center justify-center mb-2"
               >
                 Blogs
@@ -108,6 +109,8 @@ export default function PostPage({params:{slug}}:{params:{slug:string}}) {
               </div>
             </div>
           </div>
+          
+          <div className="item-center justify-center m-4 gap-3 w-screen h-2  flex"> share  <NextShare  url={path} /></div>
         </main>
       )}
       {error && <p>{error}</p>}

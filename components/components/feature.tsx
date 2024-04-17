@@ -18,7 +18,7 @@ import {
 
 async function getPost() {
   try {
-    const response = await fetch("api/blog",{cache: 'force-cache'});
+    const response = await fetch("api/blog",);
     if (!response.ok) {
       throw new Error('Failed to fetch posts');
     }
@@ -57,6 +57,7 @@ export function Bentogrid() {
           header={<Skeleton  image={item.image}/>}
           image={item.image}
           link = {item.link}
+          slug={item.slug}
           className={i === 3 || i === 6 ? "md:col-span-2" : ""}
         />
       ))}

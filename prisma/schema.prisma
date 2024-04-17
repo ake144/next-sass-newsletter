@@ -26,21 +26,23 @@ model Blog {
 }
 
 model posts {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   title     String
   link      String
   thumbnail String
   authorId  Int
   content   String
-  author    User   @relation(fields: [authorId], references: [id])
+  slug      String
+  author    User    @relation(fields: [authorId], references: [id])
 }
 
 model Latest {
-  id          Int    @id @default(autoincrement())
-  title       String @unique
+  id          Int     @id @default(autoincrement())
+  title       String  @unique
   description String
   authorId    Int
   image       String
   link        String
-  author      User   @relation(fields: [authorId], references: [id])
+  slug        String
+  author      User    @relation(fields: [authorId], references: [id])
 }

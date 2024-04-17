@@ -8,10 +8,9 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { slug: string } }
 ) {
-  const  title = params.slug
-  console.log('the title is ' + title)
+  const  slug = params.slug
   const post = await prisma.posts.findFirst({
-    where: { title }
+    where: { slug }
   });
 
    if(!post) {

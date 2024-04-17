@@ -1,4 +1,5 @@
 import prisma from "@/utils/db";
+import { LatestBlog, posts } from "@/utils/type";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(
@@ -11,11 +12,10 @@ export async function GET(
   console.log(params)
 
    const post = await prisma.latest.findFirst({
-  where: { 
-    title :slug
-  }
-})
-
+     where: {
+       slug
+     }
+   });
 
     if (!post) {
       return NextResponse.json({ success: false, error: "Post not found" });

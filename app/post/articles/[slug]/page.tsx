@@ -1,15 +1,12 @@
 'use client'
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { posts } from '@/utils/type';
 import Link from "next/link";
 import Image from "next/image";
 import { SkeletonCard } from "@/components/components/skeleton";
 
 export default function PostPage({params: {slug}}:{params: {slug: string}}) {
-  const decodedSlug = decodeURIComponent(slug); // Decoding the slug
-  console.log('the decode slug is' + decodedSlug)
-
   const [Loading, setLoading] = useState(true);
   const [postData, setPostData] = useState<posts | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +14,7 @@ export default function PostPage({params: {slug}}:{params: {slug: string}}) {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/latest/${decodedSlug}`);
+        const response = await fetch(`/api/latest/${slug}`);
         const data = await response.json();
 
         if (data.success) {
@@ -35,7 +32,7 @@ export default function PostPage({params: {slug}}:{params: {slug: string}}) {
     };
 
     fetchPost();
-  }, [decodedSlug]);
+  }, [slug]);
 
   return (
     <>
